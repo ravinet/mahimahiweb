@@ -137,7 +137,8 @@ only.</p> <p>The vendors shown aren't affiliated with and haven't endorsed Mahim
       <div class="row-fluid">
         <div class="span6">
           <!--<h3 class="callout">Compiling from Git</h3><br>-->
-          <pre>$ git clone <a href="https://github.com/ravinet/mahimahi">https://github.com/ravinet/mahimahi</a>
+          <pre>$ sudo apt-get install debhelper autotools-dev dh-autoreconf iptables protobuf-compiler libprotobuf-dev pkg-config libssl-dev dnsmasq-base ssl-cert libxcb-present-dev libcairo2-dev libpango1.0-dev iproute2 apache2-dev apache2-bin
+$ git clone <a href="https://github.com/ravinet/mahimahi">https://github.com/ravinet/mahimahi</a>
 $ cd mahimahi
 $ ./autogen.sh
 $ ./configure
@@ -156,7 +157,7 @@ $ sudo make install</pre>
                   <tr><td>iptables</td><td>iptables</td></tr>
                   <tr><td>pkg-config</td><td>pkg-config</td></tr>
                   <tr><td><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">dnsmasq</a></td><td>dnsmasq-base</td></tr>
-                  <tr><td><a href="http://httpd.apache.org/">Apache2</a></td><td>apache2-bin</td></tr>
+                  <tr><td><a href="http://httpd.apache.org/">Apache2</a></td><td>apache2-bin, apache2-dev</td></tr>
                   <tr><td>debhelper (>= 9)</td><td>debhelper</td></tr>
                   <tr><td><a href="https://www.openssl.org/">OpenSSL</a></td><td>libssl-dev, ssl-cert</td></tr>
                   <tr><td><a href="http://xcb.freedesktop.org/">xcb</a></td><td>libxcb-present-dev</td></tr>
