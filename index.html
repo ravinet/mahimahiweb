@@ -331,7 +331,7 @@ Web servers.
     </div>
 
     <div class="span6">
-      <h3 class="callout">To record a page load from www.nytimes.com</h3>
+      <h3 class="callout">To record a page load from www.nytimes.com in Chromium:</h3>
       <pre>mm-webrecord /tmp/nytimes chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
       <p>The use of "--user-data-dir=/tmp/nonexistent$(date +%s%N)" is to prevent the browser from reusing an existing chromium-browser process.</p>
     </div>
@@ -343,7 +343,7 @@ Web servers.
             <p>This will result in the following shell prompt: "[delay 20 ms] [link] $" and both per-packet queueing delay and uplink/downlink throughput will be plotted in real-time.</p>
           </div>
 <div class="span6">
-      <h3 class="callout">To make Chrome retrieve the saved website from the example above over a delayed, lossy link with throughput of 1 full-sized packet per millisecond:</h3>      <pre>mm-webreplay /tmp/nytimes mm-delay 50 mm-loss uplink 0.1 mm-link <(echo 1) <(echo 1) -- chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
+      <h3 class="callout">To make Chromium retrieve the saved website from the example above over a delayed, lossy link with throughput of 1 full-sized packet per millisecond:</h3>      <pre>mm-webreplay /tmp/nytimes mm-delay 50 mm-loss uplink 0.1 mm-link <(echo 1) <(echo 1) -- chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
         </div>
         </div>
 
