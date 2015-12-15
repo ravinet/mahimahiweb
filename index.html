@@ -137,7 +137,8 @@ only.</p> <p>The vendors shown aren't affiliated with and haven't endorsed Mahim
       <div class="row-fluid">
         <div class="span6">
           <!--<h3 class="callout">Compiling from Git</h3><br>-->
-          <pre>$ git clone <a href="https://github.com/ravinet/mahimahi">https://github.com/ravinet/mahimahi</a>
+          <pre>$ sudo apt-get install debhelper autotools-dev dh-autoreconf iptables protobuf-compiler libprotobuf-dev pkg-config libssl-dev dnsmasq-base ssl-cert libxcb-present-dev libcairo2-dev libpango1.0-dev iproute2 apache2-dev apache2-bin
+$ git clone <a href="https://github.com/ravinet/mahimahi">https://github.com/ravinet/mahimahi</a>
 $ cd mahimahi
 $ ./autogen.sh
 $ ./configure
@@ -156,7 +157,7 @@ $ sudo make install</pre>
                   <tr><td>iptables</td><td>iptables</td></tr>
                   <tr><td>pkg-config</td><td>pkg-config</td></tr>
                   <tr><td><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">dnsmasq</a></td><td>dnsmasq-base</td></tr>
-                  <tr><td><a href="http://httpd.apache.org/">Apache2</a></td><td>apache2-bin</td></tr>
+                  <tr><td><a href="http://httpd.apache.org/">Apache2</a></td><td>apache2-bin, apache2-dev</td></tr>
                   <tr><td>debhelper (>= 9)</td><td>debhelper</td></tr>
                   <tr><td><a href="https://www.openssl.org/">OpenSSL</a></td><td>libssl-dev, ssl-cert</td></tr>
                   <tr><td><a href="http://xcb.freedesktop.org/">xcb</a></td><td>libxcb-present-dev</td></tr>
@@ -330,7 +331,7 @@ Web servers.
     </div>
 
     <div class="span6">
-      <h3 class="callout">To record a page load from www.nytimes.com</h3>
+      <h3 class="callout">To record a page load from www.nytimes.com in Chromium:</h3>
       <pre>mm-webrecord /tmp/nytimes chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
       <p>The use of "--user-data-dir=/tmp/nonexistent$(date +%s%N)" is to prevent the browser from reusing an existing chromium-browser process.</p>
     </div>
@@ -342,7 +343,7 @@ Web servers.
             <p>This will result in the following shell prompt: "[delay 20 ms] [link] $" and both per-packet queueing delay and uplink/downlink throughput will be plotted in real-time.</p>
           </div>
 <div class="span6">
-      <h3 class="callout">To make Chrome retrieve the saved website from the example above over a delayed, lossy link with throughput of 1 full-sized packet per millisecond:</h3>      <pre>mm-webreplay /tmp/nytimes mm-delay 50 mm-loss uplink 0.1 mm-link <(echo 1) <(echo 1) -- chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
+      <h3 class="callout">To make Chromium retrieve the saved website from the example above over a delayed, lossy link with throughput of 1 full-sized packet per millisecond:</h3>      <pre>mm-webreplay /tmp/nytimes mm-delay 50 mm-loss uplink 0.1 mm-link <(echo 1) <(echo 1) -- chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
         </div>
         </div>
 
