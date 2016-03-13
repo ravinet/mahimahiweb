@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Mahimahi</title>
+    <title>Polaris</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A set of lightweight tools aimed at browser developers, website authors, and Web server developers to produce a usable benchmark for Web transport protocols and browser behaviors.">
-    <meta name="author" content="Ravi Netravali <mahimahi@mit.edu>">
+    <meta name="description" content="Polaris is a new system that accelerates web page loads by tracking fine-grained dependencies between objects on a page, and then exposing these dependencies to browsers such that they can aggresively fetch objects to reduce page load times.">
+    <meta name="author" content="Ravi Netravali <polariswebmit.edu>">
 
     <!-- Le styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -48,15 +48,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Mahimahi</a>
+          <a class="brand" href="#">Polaris</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="#about">About</a></li>
-              <li><a href="#getting">Getting Mahimahi</a></li>
               <li><a href="#techinfo">Details</a></li>
-              <li><a href="#usage">Examples</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="https://github.com/ravinet/mahimahi">Mahimahi on GitHub</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -71,300 +68,133 @@
       <div class="span10">
         <div align="center">
         <h1>Mahimahi</h1>
-        <p>A set of lightweight tools for browser developers, website authors, and network protocol designers that provides accurate measurements when recording and replaying HTTP content over emulated network conditions.</p>
-        <p>Mahimahi is free software and is available on Ubuntu (version 14.04 or higher). </p>
+        <p>Web pages can be modeled as directed acyclic graphs (dependency
+graphs) which capture the relationships between all of the page's objects.
+Polaris is a new system that accelerates web page loads by first creating
+fine-grained dependency graphs for a page (using Scout), and then exposing
+these new graphs to browsers such that they can aggresively fetch objects to
+minimize round trips between clients and servers.</p>
         </div>
       </div>
-    </div>
-    <div align="center">
-    <p><a class="btn btn-primary btn-large" href="#getting">Getting Mahimahi &raquo;</a>
     </div>
   </div>
 
   <div id="features">
   <div class="row-fluid">
       <div class="feature span4">
-        <h2 class="callout">Record and replay HTTP traffic</h2>
-        <p>Using Mahimahi's RecordShell, you can completely record
-        and store real HTTP content (such as Web pages) to disk. Recorded sites can then be repeatably replayed using
-        ReplayShell. ReplayShell accurately models a Web application's  multi-server structure by
-        locally mirroring a page's server distribution.</p>
-      </div>
+        <h2 class="callout">Track fine-grained dependencies with Scout</h2>
+        <p>Scout enables developers to automatically track all interactions
+between objects on a web page. After rewriting a page to support logging, Scout
+generates a list of reads and writes to a pages state (with detailed
+information about which script and line number is triggering the read/write).
+It then processes this list to produce a list of dependencies between the
+objects on a page.</p> </div>
       <div class="feature span4">
-          <h2 class="callout">Emulate numerous network conditions</h2>
-          <p>Mahimahi's network emulation tools can be used to emulate many different link conditions
-          for replaying recorded HTTP traffic. Mahimahi supports emulating fixed propagation delays (DelayShell),
-          fixed and variable link rates (LinkShell), stochastic packet loss (LossShell). LinkShell also supports
-          a variety of queueing disciplines such as DropTail, DropHead, and active queue management schemes like CoDel.
-          Each of Mahimahi's network emulation tools can be arbitrarily nested within one another providing more experimental flexibility.</p>
-      </div>
+          <h2 class="callout">Faster Page Loads with Polaris</h2>
+          <p>Polaris exposes fine-grained dependency graphs (tracked by Scout)
+to browsers, along with a JavaScript scheduling library. This library allows
+browsers to completely load pages with JavaScript, using Scout's dependency
+graphs to fetch objects as aggressively as possible while ensuring
+correctness.<p> </div>
       <div class="feature span4">
-        <h2 class="callout">Use unmodified client applications</h2>
-        <p>Recording and replaying sites can be done using commercial
-        browsers such as Google Chrome, Mozilla Firefox, and Safari.
-        Additionally, other client applications including virtual machines
-        and mobile-device emulators can be run unmodified within each of Mahimahi's tools.</p>
-      </div>
+        <h2 class="callout">Browser Agnostic</h2>
+        <p>Polaris is currently implemented at the JavaScript layer, making it
+a cross-browser solution. Developers can still create different pages for
+different client browsers (e.g., using User-agent headers). In such cases,
+Scout graphs must be generated for each page, but Polaris remains
+unchanged.</p> </div>
   </div>
   </div>
 </section>
       
 <section id="news">
   <div class="page-header">
-<section id="getting">
-  <div class="page-header">
-    <h1>Getting Mahimahi</h1>
-  </div>
-
-  <div id="binaries" class="row-fluid">
-    <div class="span4" style="vertical-align: top;">
-      <h3 class="callout"><a href="http://www.ubuntu.com"><img class="logo" src="ubuntu.png" alt=""></a>Ubuntu <small>14.04 and later</small></h3>
-            <pre>$ sudo add-apt-repository ppa:keithw/mahimahi
-$ sudo apt-get update
-$ sudo apt-get install mahimahi</pre>
-            <br />
-    </div>
-</div>
-  <p><small>Operating system logos are trademarks or registered trademarks and are displayed for identification
-only.</p> <p>The vendors shown aren't affiliated with and haven't endorsed Mahimahi.</small></p>
-
-  <div id="build-instructions" class="page-header">
-    <h2>Building from source</h2>
-  </div>
-
-  <div class="row-fluid">
-    <div class="span8">
-      <div class="row-fluid">
-        <div class="span6">
-          <!--<h3 class="callout">Compiling from Git</h3><br>-->
-          <pre>$ git clone <a href="https://github.com/ravinet/mahimahi">https://github.com/ravinet/mahimahi</a>
-$ cd mahimahi
-$ ./autogen.sh
-$ ./configure
-$ make
-$ sudo make install</pre>
-        </div>
-      </div>
-      <div class="row-fluid">
-        <div class="span10">
-          <h3 class="callout">Dependencies</h3><br>
-          <table class="table table-striped" style="width: 100%;">
-                  <thead><tr><th>Name</th><th>Typical package</th></tr></thead>
-                  <tr class="deps"><td><a href="http://code.google.com/p/protobuf/">Protocol Buffers</a></td><td>protobuf-compiler, libprotobuf-dev</td></tr>
-                  <tr><td>autotools</td><td>autotools-dev</td></tr>
-                  <tr><td>autoreconf</td><td>dh-autoreconf</td></tr>
-                  <tr><td>iptables</td><td>iptables</td></tr>
-                  <tr><td>pkg-config</td><td>pkg-config</td></tr>
-                  <tr><td><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">dnsmasq</a></td><td>dnsmasq-base</td></tr>
-                  <tr><td><a href="http://httpd.apache.org/">Apache2</a></td><td>apache2-bin</td></tr>
-                  <tr><td>debhelper (>= 9)</td><td>debhelper</td></tr>
-                  <tr><td><a href="https://www.openssl.org/">OpenSSL</a></td><td>libssl-dev, ssl-cert</td></tr>
-                  <tr><td><a href="http://xcb.freedesktop.org/">xcb</a></td><td>libxcb-present-dev</td></tr>
-                  <tr><td><a href="http://cairographics.org/">Cairo</a></td><td>libcairo2-dev</td></tr>
-                  <tr><td><a href="http://www.pango.org/">Pango</a></td><td>libpango1.0-dev</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
 
 <section id="techinfo">
   <div class="page-header">
     <h1>Details</h1><br>
 <div class="row">
 <div class="span8">
-<p>Each mahimahi tool spawns a lightweight container, generally connected to the
-outside via a synthetic network device that observes packets in
-transit or emulates a desired behavior.
-</p>
-<p>
-Mahimahi's tools are composable so that a series of emulated network effects
-can be chained together, with mahimahi containers nested inside each
-other. Each tool takes an optional command to execute, so it
-is possible to create a series of nested containers with one command
-line.
-</p>
+<p>Scout produces fine-grained dependency graphs for web pages by rewriting
+pages to load reads and writes to the page's state, and then processing the
+generated logs to extract inter-object dependencies. Polaris then exposes these
+fine-grained dependency graphs to browsers, along with a JavaScript scheduling
+library. Using this library, browsers can aggressively fetch objects in a way
+that minimizes round trip times between clients and servers (and thus, reduces
+page load times) while ensuring correctness.  </p>
 </div>
 </div>
   </div>
  
-  <h2 class="callout">Network Emulation Tools</h2> 
-  <h3 class="callout">DelayShell</h3>
-
+  <h2 class="callout">Scout</h2> 
   <div class="row">
     <div class="span8">
   <p>
-Every packet entering or leaving DelayShell's container is delayed by the specified
-one-way delay (in milliseconds). This technique enforces a fixed delay on a per-packet
-basis.
-</p>
+Scout first rewrites a page's HTML and JavaScript objects such that, upon
+execution, they will output a list of reads and writes to the page's state.
+These log entries include details such as the filename and line number that
+trigger the read or write, as well as variable names and object id information.
+Scout then processes this log to extract dependencies between objects on a
+page. Using these dependencies, Scout outputs the fine-grained dependency graph
+for the given page.  </p>
     </div>
   </div>
 
-  <h3 class="callout">LinkShell</h3>
-
+  <h2 class="callout">Polaris</h2>
   <div class="row">
     <div class="span8">
-  <p>
-LinkShell is a network emulation tool that emulates links using packet delivery
-trace files. An uplink trace file emulates the link from LinkShell's container to the Internet
-and a downlink trace file emulates the link from the Internet to LinkShell's container.
+<p>
+Today's browsers are constrained by uncertainty regarding how objects on a page
+interact. As a result, they are forced to use conservative assumptions when
+loading pages, to ensure correctness. For example, because browsers today don't
+know whether two objects on a page share state (and thus have a dependency
+between one another), they are forced to load these objects serially, in the
+order that the corresponding HTML tags are in. While this ensure correctness,
+it often fails to fully utilize network and CPU resources during page loads,
+and thus prevents browsers from loading pages as quickly as possible.
 </p>
 <p>
-LinkShell can emulate both time-varying links, such as cellular links, and
-links with fixed link speeds. When a packet arrives at the link (from either
-the Internet or from LinkShell), it is directly placed into one of two packet
-queues depending on its intended direction: the uplink queue or the downlink
-queue.  LinkShell releases packets from each queue based on the corresponding
-input packet-delivery trace. 
+Polaris tackles this problem by exposing fine-grained dependency graphs
+(generated by Scout) to browsers, along with a JavaScript scheduling library
+(the scheduler stub). Executing the scheduler library enables browsers to
+completely load pages from JavaScript, in a way that most efficient utilizes
+the available resources, and thereby reduces the number of round trips between
+clients and servers, and thus, the page load time. To load a page, the
+scheduler uses XMLHttpRequests to fetch objects, and functions like
+window.eval() to evaluate responses. Importantly, the scheduler dynamically
+prioritizes requests that are blocking the largest number of subsequent
+requests, based on the fine-grained dependency graph.
 </p>
-<p>
-Each line in a trace file represents a packet delivery opportunity: the time at
-which an MTU-sized packet can be delivered in the emulation. Accounting is done
-at the byte-level, and each delivery opportunity represents the ability to
-deliver 1500 bytes. Thus, a single line in the trace file can delivery several
-smaller packets whose sizes sum to 1500 bytes. Delivery opportunities are
-wasted if bytes are unavailable at the instant of an opportunity. When
-LinkShell reaches the end of an input trace file, it wraps around to the
-beginning of the trace file. LinkShell can be nested within DelayShell to
-flexibly create links with a user-supplied one-way delay and a user-supplied
-link rate.
-</p>
-<p>
-LinkShell supports live graphing to visualize a process's use of the network.
-Supported plots include the transfer rate as well as the per-packet queueing
-delay for traffic leaving (uplink) and entering (downlink) LinkShell's
-container. 
-</p>
+
+<img src="polaris_flow_diagram.pdf"/>
     </div>
   </div>
 
 
-  <h3 class="callout">LossShell</h3>
-
-  <div class="row">
-    <div class="span8">
-  <p>
-Packets are lost at a given rate (between 0 and 1) both when leaving (uplink)
-and entering (downlink) the LossShell's container.
-</p>
-    </div>
-  </div>
-
-  <h2 class="callout">HTTP Record-and-Replay Tools</h2>
-  <h3 class="callout">RecordShell</h3>
-
-  <div class="row">
-    <div class="span8">
-  <p>
-RecordShell transparently proxies outgoing HTTP and HTTPS connections, saving
-the requests, corresponding responses, and IP address of each Web server
-contacted in the given directory. RecordShell uses a self-signed TLS
-certificate in its HTTPS proxy, causing typical Web browsers to reject it. For
-testing or debugging purposes, this behavior can usually be turned off, e.g.:
-with the <i>--no-check-certificate</i> option to <a
-href="http://www.gnu.org/software/wget/">wget</a> or the
-<i>--ignore-certificate-errors</i> option to the <a
-href="https://www.chromium.org/">Chromium Browser</a>.
-</p>
      <div class="span5"></div>
-
     </div>
   </div>
 
-<h3 class="callout">ReplayShell</h3>
-
-  <div class="row">
-    <div class="span8">
-  <p>
-Replays a saved session from a previous run of RecordShell.  Unlike most
-mahimahi tools, the ReplayShell container does not have a network connection to
-the outside world. Instead, it has dummy network interfaces bound to each IP
-address on which a Web server in the saved session had answered a request.
-ReplayShell runs an <a href="http://httpd.apache.org/">Apache2</a> Web server
-bound to each such IP address inside the container. Each Web server emulates
-the corresponding server from the saved session. When receiving a request that
-matches one in the directory, the corresponding Apache2 server replies with the
-same reply as previously captured.
-</p>
-<p>
-ReplayShell can be used to measure the performance of Web browsers on complex
-websites and the effect of changes in Web protocols (e.g. HTTP, HTTP/2, SPDY,
-QUIC). Unlike tools like <a
-href="https://github.com/chromium/web-page-replay">web-page-replay</a>,
-ReplayShell preserves the sharded structure of a website, binds to the
-actual IP addresses that the real website used, and serves requests from real
-Web servers.
-</p>
 <div class="span5"></div>
     </div>
   </div>
   <h2 class="callout">Technical Paper</h2>
   <div class="row">
     <div class="span4">
-      <p>The <a href="mahimahi_atc.pdf">Mahimahi research paper</a>, which provides more details about the
-        design and evaluation of Mahimahi, was presented at the
-      <a href="https://www.usenix.org/conference/atc15">2015 USENIX
-        Annual Technical Conference</a>.</p>
-    </div>
-    <div class="span8">
-     <video width="560" height="315" controls="true">
-<source src="https://2459d6dc103cb5933875-c0245c5c937c5dedcca3f1764ecc9b2f.ssl.cf2.rackcdn.com/atc15/netravali.mp4" type="video/mp4" /></video>
+      <p>The <a href="polaris_nsdi16.pdf">Polaris research paper</a>, which provides more details about the
+        design and evaluation of Scout and Polaris, was presented at the
+      <a href="https://www.usenix.org/conference/nsdi16">2016 USENIX Symposium on Networked Systems Design and Implementation (NSDI '16)</a>.</p>
     </div>
   </div>
-</section>
-
-<section id="usage">
-  <div class="page-header">
-    <h1>Example Commands</h1>
-  </div>
-
-  <div class="row">
-
-    <div class="span4">
-      <h3 class="callout">To spawn a shell with a delayed, lossy link to the Internet:</h3>
-      <pre>mm-delay 50 mm-loss uplink 0.2</pre>
-      <p>Running this command will result in a shell prompt of "[delay 50 ms] [loss up=0.1]" and all programs run inside this environment will have a 100 ms minimum RTT and the emulated link has a loss rate of 20%.</p>
-    </div>
-
-    <div class="span6">
-      <h3 class="callout">To record a page load from www.nytimes.com in Chromium:</h3>
-      <pre>mm-webrecord /tmp/nytimes chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
-      <p>The use of "--user-data-dir=/tmp/nonexistent$(date +%s%N)" is to prevent the browser from reusing an existing chromium-browser process.</p>
-    </div>
-</div>
-    <div class="row">
-          <div class="span4">
-            <h3 class="callout">To emulate a variable cellular network and visualize a process's use of the network:</h3>
-            <pre>mm-delay 20 mm-link --meter-all /usr/share/mahimahi/traces/Verizon-LTE-short.up /usr/share/mahimahi/traces/Verizon-LTE-short.down</pre>
-            <p>This will result in the following shell prompt: "[delay 20 ms] [link] $" and both per-packet queueing delay and uplink/downlink throughput will be plotted in real-time.</p>
-          </div>
-<div class="span6">
-      <h3 class="callout">To make Chromium retrieve the saved website from the example above over a delayed, lossy link with throughput of 1 full-sized packet per millisecond:</h3>      <pre>mm-webreplay /tmp/nytimes mm-delay 50 mm-loss uplink 0.1 mm-link <(echo 1) <(echo 1) -- chromium-browser --ignore-certificate-errors --user-data-dir=/tmp/nonexistent$(date +%s%N) www.nytimes.com</pre>
-        </div>
-        </div>
-
-  <h3 class="callout">Exiting</h3>
-
-  <p>To exit any shell, simply use <i>exit</i>. When nesting shells, <i>exit</i> will only exit the inner-most shell.</p>
-  <p>You can verify that you have exited a given shell by checking that there is no prompt in the terminal (eg. [delay 10 ms] ).</p>
-
-  <h3 class="callout">Manual</h3>
-
-  <p>More details can be found in
-  the <code>mahimahi(1)</code> manual pages.</p>
-
 </section>
 
 <section id="contact">
   <div class="page-header">
     <h1>Contact</h1>
   </div>
- <p>Mahimahi was written by Ravi Netravali, Anirudh Sivaraman, Greg D. Hill, and Keith Winstein.</p>
+ <p>Polaris and Scout were written by <a href="http://web.mit.edu/ravinet/www/">Ravi Netravali</a>, <a href="https://www.linkedin.com/in/ameesh-goyal-76942880">Ameesh Goyal</a>, <a href="https://www.seas.harvard.edu/directory/mickens">James Mickens</a>, and <a href="http://nms.csail.mit.edu/~hari/">Hari Balarishnan</a>.</p>
 
-  <p>For any questions or suggestions, please e-mail <code>mahimahi@mit.edu</code></p>
+  <p>For any questions or suggestions, please e-mail <code>polarisweb@mit.edu</code></p>
 
 
 </section>
